@@ -17,9 +17,9 @@ class APIHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
-            sql = "SELECT * FROM users;"
+            sql = "SELECT * FROM users"
             if 'params' in locals():
-                sql += "WHERE username='{}';".format(params['username'][0])
+                sql += " WHERE username='{}'".format(params['username'][0])
                 cursor.execute(sql)
                 users = cursor.fetchone()
             else:
@@ -31,9 +31,9 @@ class APIHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
-            sql = "SELECT * FROM overdrafts;"
+            sql = "SELECT * FROM overdrafts"
             if 'params' in locals():
-                sql += "WHERE username='{}';".format(params['username'][0])
+                sql += " WHERE username='{}'".format(params['username'][0])
             cursor.execute(sql)
             users = cursor.fetchall()
             self.wfile.write(json.dumps(users).encode())
@@ -42,10 +42,12 @@ class APIHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
-            sql = "SELECT * FROM transfers;"
+            sql = "SELECT * FROM transfers"
             if 'params' in locals():
                 if 'username' in params.keys():
-                    sql += "WHERE origin='{}' OR destination='{}';".format(params['username'][0], params['username'][0])
+                    sql += " WHERE origin='{}' OR destination='{}'".format(params['username'][0], params['username'][0])
+            else:
+                sql += ";"
             cursor.execute(sql)
             users = cursor.fetchall()
             self.wfile.write(json.dumps(users).encode())
@@ -133,7 +135,7 @@ class APIHandler(BaseHTTPRequestHandler):
             if 'username' not in data.keys() or 'balance' not in data.keys():
                 self.send_error(400, "Username or new balance not in request")
                 return
-            sql = "UPDATE users SET balance={} WHERE username={}".format(data['balance'], data['username'])
+            sql = "UPDATE users SET balance={} WHERE username='{}'".format(data['balance'], data['username'])
             cursor.execute(sql)
             self.send_response(203, "Balance updated")
             return

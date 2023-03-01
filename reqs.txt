@@ -26,3 +26,37 @@ Usar SQL plano
 Sin Frameworks de desarrollo sobre web/corporativo (e.g: Spring, J2EE, EntityFramework, etc.)
 
 Debe limitarse a los requerimientos solicitados
+
+
+CRUD 
+
+Create -> HTTP POST
+Read -> HTTP GET
+Update -> HTTP PUT
+Delete -> HTTP DELETE
+
+APIs
+
+Modelos
+- usuario
+- sobregiro
+- transferencia
+
+
+Páginas
+- login
+
+Usuarios:
+- ver la cuenta (pueden ver solo su cuenta)
+- hacer transferencia
+- ver sus transferencias
+- solicitar sobregiro
+
+Admins:
+- ver la cuenta (pueden ver todas las cuentas)
+- autorizar sobregiros
+- ver todas las transferencias
+- modificar dinero de un usuario
+
+Auditor:
+-usan páginas del admin
