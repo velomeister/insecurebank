@@ -1,0 +1,28 @@
+Funcionales:
+Aplicación transaccional bancaria básica que permita a los diferentes actores realizar los siguientes movimientos:
+
+Administrador:
+Crear usuario. Se crea un usuario previamente registrado en el sistema (El usuario debe estar registrado previamente en el sistema en una oficina física)
+Modificar Dinero de usuario
+Autorizar sobregiros de usuarios
+Ver transferencias de los usuarios
+Iniciar sesión
+Auditor
+Ver transferencias de los usuarios
+Iniciar sesión
+Cliente
+Iniciar sesión
+Recibir transacción
+Ver movimientos
+Ver dinero total
+Sobregirarse
+Realizar transacción
+
+No funcionales
+Debe utilizar servicios GraphQL o REST
+No puede utilizar ningún tipo de framework de desarrollo moderno para el back-end, sólo pueden usuarse librerías básicas y código plano. (Para el front si pero pues... no es necesario hacerlo bonito)
+Sin Frameworks de acceso a bases de datos (ORM)
+Usar SQL plano
+Sin Frameworks de desarrollo sobre web/corporativo (e.g: Spring, J2EE, EntityFramework, etc.)
+
+Debe limitarse a los requerimientos solicitados
