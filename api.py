@@ -119,6 +119,10 @@ class APIHandler(BaseHTTPRequestHandler):
                 cursor.execute(sql)
             self.send_response(203, "Overdraft managed")
             return
+        else:
+            self.send_response(404)
+            return
+    def do_PUT(self):
         if self.path == '/set-balance':
             content_len = int(self.headers.get('Content-Length', 0))
             post_body = self.rfile.read(content_len).decode()
@@ -133,7 +137,9 @@ class APIHandler(BaseHTTPRequestHandler):
             cursor.execute(sql)
             self.send_response(203, "Balance updated")
             return
-
+        else:
+            self.send_response(404)
+            return
 
 connection = pymysql.connect(host='localhost',
                              user='dbuser',
