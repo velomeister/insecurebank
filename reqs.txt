@@ -7,9 +7,11 @@ Modificar Dinero de usuario
 Autorizar sobregiros de usuarios
 Ver transferencias de los usuarios
 Iniciar sesión
+
 Auditor
 Ver transferencias de los usuarios
 Iniciar sesión
+
 Cliente
 Iniciar sesión
 Recibir transacción
