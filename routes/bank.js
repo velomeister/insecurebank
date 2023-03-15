@@ -17,4 +17,6 @@ router.get('/request-overdraft', authMiddleware.isLoggedIn, authMiddleware.isUse
 
 router.post('/request-overdraft', authMiddleware.isLoggedIn, authMiddleware.isUser, bankController.requestOverdraft);
 
+router.get('/transactions', authMiddleware.isLoggedIn, authMiddleware.isUser, bankController.getTransactions);
+
 module.exports = router;

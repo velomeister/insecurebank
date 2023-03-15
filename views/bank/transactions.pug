@@ -1,0 +1,38 @@
+extends ../layouts/layout.pug
+
+block title 
+    title Transactions
+
+block append styles
+    link(rel="stylesheet", href="/css/product.css")
+
+block content
+    main
+        .grid
+            if transfers.length > 0
+                each transfer in transfers
+                    article.card.product-item
+                        header.card-header 
+                            h1.product-title Transfer
+                        .card-content 
+                            p.product-description From: #{transfer.originEmail}
+                            p.product-description To: #{transfer.destinationEmail}
+                            p.product-description Sent: $#{transfer.amount}
+                            p.product-description Sent at: #{transfer.date}
+            if overdrafts.length > 0
+                each overdraft in overdrafts
+                    article.card.product-item
+                        header.card-header 
+                            h1.product-title Overdraft Request
+                        .card-content 
+                            p.product-description Sent: $#{overdraft.amount}
+                            p.product-description Sent at: #{overdraft.date}
+                            if overdraft.managed == 0
+                                p.product-description Pending approval...
+                            else
+                                p.product-descrption #{overdraft.approved == 1 ? 'Approved' : 'Denied'}
+        if transfers.length == 0 && overdrafts.length == 0
+            if role == 'Administrator'
+                h1 This user has made no movements...
+            else
+                h1 You have made no movements...

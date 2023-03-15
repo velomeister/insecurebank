@@ -11,11 +11,8 @@ block content
     main
         form.product-form(action="/make-transfer", method="post")
             .form-control 
-                label(for="originId") Origin
-                input#originId(type="text", name="originId")
-            .form-control 
-                label(for="destinationId") Destination
-                input#destinationId(type="text", name="destinationId")
+                label(for="destinationEmail") Destination
+                input#destinationEmail(type="text", name="destinationEmail")
             .form-control 
                 label(for="amount") Amount
                 input#amount(type="number", name="amount")

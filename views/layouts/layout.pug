@@ -19,6 +19,8 @@ html(lang="en")
                                 a(href="/make-transfer", class=(path === '/make-transfer' ? "active" : "")) Transfer Money
                             li.main-header-item
                                 a(href="/request-overdraft", class=(path === '/request-overdraft' ? "active" : "")) Request Overdraft
+                            li.main-header-item
+                                a(href="/transactions", class=(path === '/transactions' ? "active" : "")) My Movements
                         if role == 'Administrator'
                             li.main-header-item 
                                 a(href="/admin/add-user", class=(path === '/admin/add-user' ? "active" : "")) Add Users

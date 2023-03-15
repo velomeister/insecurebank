@@ -4,9 +4,9 @@ USE `bank`;
 
 CREATE TABLE `bank`.`users`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `fullName` VARCHAR(255) NOT NULL,
-    `email` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) UNIQUE NOT NULL,
     `password` VARCHAR(255) NOT NULL,
+    `fullName` VARCHAR(255) NOT NULL,
     `role` VARCHAR(255) NOT NULL,
     `balance` INT NOT NULL,
     PRIMARY KEY (`id`),
@@ -16,23 +16,24 @@ CREATE TABLE `bank`.`users`(
 CREATE TABLE `bank`.`transfers`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `date` DATE DEFAULT (CURRENT_TIMESTAMP),
-    `originId` INT UNSIGNED NOT NULL,
-    `destinationId` INT UNSIGNED NOT NULL,
+    `originEmail` VARCHAR(255) NOT NULL,
+    `destinationEmail` VARCHAR(255) NOT NULL,
     `amount` INT NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`originId`) REFERENCES `users`(`id`),
-    FOREIGN KEY (`destinationId`) REFERENCES `users`(`id`),
+    FOREIGN KEY (`originEmail`) REFERENCES `users`(`email`),
+    FOREIGN KEY (`destinationEmail`) REFERENCES `users`(`email`),
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE
 );
 
 CREATE TABLE `bank`.`overdrafts`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `userId` INT UNSIGNED NOT NULL,
+    `userEmail` VARCHAR(255) NOT NULL,
     `amount` INT NOT NULL,
+    `date` DATE DEFAULT (CURRENT_TIMESTAMP),
     `managed` BOOLEAN DEFAULT 0,
     `approved` BOOLEAN DEFAULT 0,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`userId`) REFERENCES `users`(`id`),
+    FOREIGN KEY (`userEmail`) REFERENCES `users`(`email`),
     UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE
 );
 

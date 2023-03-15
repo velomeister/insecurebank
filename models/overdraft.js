@@ -1,20 +1,20 @@
 const db = require('../util/database');
 
 module.exports = class Overdraft {
-    constructor(id, userId, amount) {
+    constructor(id, userEmail, amount) {
         this.id = id;
-        this.userId = userId;
+        this.userEmail = userEmail;
         this.amount = amount;
     }
 
-    static save(userId, amount) {
-        db.execute(`INSERT INTO overdrafts (userId, amount) VALUES (${userId}, ${amount})`);
+    static save(userEmail, amount) {
+        db.execute(`INSERT INTO overdrafts (userEmail, amount) VALUES ('${userEmail}', ${amount})`);
     }
 
-    static manageOverdraft(requestId, userId, isApproved, amount) {
+    static manageOverdraft(requestId, userEmail, isApproved, amount) {
         db.execute(`UPDATE overdrafts SET managed = 1, approved = ${isApproved} WHERE id = ${requestId}`);
         if (isApproved == 1) {
-            db.execute(`UPDATE users SET balance = balance + ${amount} WHERE id = ${userId}`);
+            db.execute(`UPDATE users SET balance = balance + ${amount} WHERE email = '${userEmail}'`);
         }
     }
 
@@ -22,8 +22,12 @@ module.exports = class Overdraft {
         return db.execute('SELECT * FROM overdrafts');
     }
 
-    static fetchByUser(userId) {
-        return db.execute(`SELECT * FROM overdrafts WHERE userId=${userId} AND managed = 0`);
+    static fetchByUserAndPendingManagement(userEmail) {
+        return db.execute(`SELECT * FROM overdrafts WHERE userEmail = '${userEmail}' AND managed = 0`);
+    }
+
+    static fetchByUser(userEmail) {
+        return db.execute(`SELECT * FROM overdrafts WHERE userEmail = '${userEmail}'`);
     }
 
     static fetch(requestId) {

@@ -13,7 +13,7 @@ router.get('/add-user', authMiddleware.isLoggedIn, authMiddleware.isAdmin, admin
 
 router.post('/add-user', authMiddleware.isLoggedIn, authMiddleware.isAdmin, adminController.addUser);
 
-router.get('/transfers/:userId', authMiddleware.isLoggedIn, authMiddleware.isAdminOrAuditor, adminController.getTransfers);
+router.get('/transactions/:userId', authMiddleware.isLoggedIn, authMiddleware.isAdminOrAuditor, adminController.getTransactions);
 
 router.get('/manage-overdrafts/:userId', authMiddleware.isLoggedIn, authMiddleware.isAdmin, adminController.getPendingOverdrafts);
 

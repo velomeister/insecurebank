@@ -11,9 +11,6 @@ block content
     main
         form.product-form(action="/request-overdraft", method="post")
             .form-control 
-                label(for="userId") User 
-                input#userId(type="text", name="userId")
-            .form-control 
                 label(for="amount") Amount
                 input#amount(type="number", name="amount")
             button.btn(type="submit") Request Overdraft

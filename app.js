@@ -21,6 +21,8 @@ app.use(session({
 app.use('/admin', admin);
 app.use('/', bank);
 app.use(auth)
+app.use(errorController.get400);
+app.use(errorController.get401);
 app.use(errorController.get404);
 
 

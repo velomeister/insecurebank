@@ -7,3 +7,8 @@ block content
     main
         h1 Welcome to IN Secure Bank
         p Our clients' money is our priority...
+
+        if isAuthenticated 
+            h2 Welcome, #{fullName}!
+            if role == 'User'
+                p Your account's balance is $#{balance}.

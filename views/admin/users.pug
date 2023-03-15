@@ -11,21 +11,22 @@ block content
         if users.length > 0
             .grid
                 each user in users
-                    if user.role == 'User'
-                        article.card.product-item
-                            header.card-header
-                                h1.product-title #{user.fullName}
-                                hr
-                            .card-content 
+                    article.card.product-item
+                        header.card-header
+                            h1.product-title #{user.fullName}
+                            hr
+                        .card-content 
+                            if user.role == 'User'
                                 h2.product-price $#{user.balance}
-                                p.product-description #{user.email}
-                                hr
-                            .card-actions
-                                if user.role == 'User'
-                                    a.btn(href="/admin/transfers/" + user.id) View Transfers
-                                    br
-                                    br
-                                    if role == 'Administrator'
-                                        a.btn(href="/admin/manage-overdrafts/" + user.id) Manage Overdraft Requests
+                            p.product-description #{user.role}
+                            p.product-description #{user.email}
+                            hr
+                        .card-actions
+                            if user.role == 'User'
+                                a.btn(href="/admin/transactions/" + user.id) View Movements
+                                br
+                                br
+                                if role == 'Administrator'
+                                    a.btn(href="/admin/manage-overdrafts/" + user.id) Manage Overdraft Requests
         else 
             h1 No users created...
