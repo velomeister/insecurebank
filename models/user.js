@@ -28,4 +28,8 @@ module.exports = class User {
     static fetchByEmail(email) {
         return db.execute(`SELECT * FROM users WHERE email = '${email}'`);
     }
+
+    static delete(userId) {
+        db.execute(`DELETE FROM users WHERE id = ${userId}`);
+    }
 }

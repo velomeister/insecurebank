@@ -12,8 +12,8 @@ exports.isAdmin = (req, res, next) => {
     next();
 }
 
-exports.isAuditor = (req, res, next) => {
-    if (req.session.user.role != 'Auditor') {
+exports.isAdminOrAuditor = (req, res, next) => {
+    if (req.session.user.role != 'Administrator' && req.session.user.role != 'Auditor') {
         return res.status(401).render('401');
     }
     next();
