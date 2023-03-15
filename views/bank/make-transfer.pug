@@ -1,0 +1,22 @@
+extends ../layouts/layout.pug
+
+block title 
+    title Transfer Money
+
+block append styles 
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/product.css")
+
+block content
+    main
+        form.product-form(action="/make-transfer", method="post")
+            .form-control 
+                label(for="originId") Origin
+                input#originId(type="text", name="originId")
+            .form-control 
+                label(for="destinationId") Destination
+                input#destinationId(type="text", name="destinationId")
+            .form-control 
+                label(for="amount") Amount
+                input#amount(type="number", name="amount")
+            button.btn(type="submit") Transfer Money

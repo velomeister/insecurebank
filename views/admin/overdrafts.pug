@@ -1,0 +1,29 @@
+extends ../layouts/layout.pug
+
+block title 
+    title Admin Overdrafts
+
+block append styles
+    link(rel="stylesheet", href="/css/product.css")
+
+block content
+    main
+        if overdrafts.length > 0
+            .grid
+                each overdraft in overdrafts
+                    article.card.product-item
+                        header.card-header
+                            h1.product-title #{overdrafts.userId}
+                        .card-content 
+                            h2.product-price $#{overdraft.amount}
+                        .card-actions
+                            form(action="/admin/overdrafts", method="post")
+                                input#requestId(type="hidden", name="requestId", value=overdraft.id)
+                                input#isApproved(type="hidden", name="isApproved", value=1)
+                                button.btn(type="submit") Approve
+                            form(action="/admin/overdrafts", method="post")
+                                input#requestId(type="hidden", name="requestId", value=overdraft.id)
+                                input#isApproved(type="hidden", name="isApproved", value=0)
+                                button.btn(type="submit") Deny
+        else 
+            h1 This user has not requested overdrafts...

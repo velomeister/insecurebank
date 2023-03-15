@@ -1,0 +1,22 @@
+extends ../layouts/layout.pug
+
+block title 
+    title Create User
+
+block append styles 
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/product.css")
+
+block content
+    main
+        form.product-form(action="/admin/add-user", method="post")
+            .form-control 
+                label(for="fullName") Full Name
+                input#fullName(type="text", name="fullName")
+            .form-control 
+                label(for="email") Email
+                input#email(type="text", name="email")
+            .form-control 
+                label(for="password") Password
+                input#password(type="password", name="password")
+            button.btn(type="submit") Create User

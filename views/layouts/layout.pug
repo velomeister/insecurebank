@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        block title
+        block styles
+            link(rel="stylesheet", href="/css/main.css")
+    body
+        header.main-header
+            nav.main-header-nav
+                ul.main-header-item-list
+                    li.main-header-item
+                        a(href="/", class=(path === '/' ? "active" : "")) IN Secure Bank
+                    if isAuthenticated
+                        if role == 'User'
+                            li.main-header-item
+                                a(href="/make-transfer", class=(path === '/make-transfer' ? "active" : "")) Transfer Money
+                            li.main-header-item
+                                a(href="/request-overdraft", class=(path === '/request-overdraft' ? "active" : "")) Request Overdraft
+                        if role == 'Administrator'
+                            li.main-header-item 
+                                a(href="/admin/add-user", class=(path === '/admin/add-user' ? "active" : "")) Add Users
+                        if role == 'Administrator'
+                            li.main-header-item 
+                                a(href="/admin/users", class=(path === '/admin/users' ? "active" : "")) Admin Users
+                        if role == 'Auditor'
+                            li.main-header-item 
+                                a(href="/admin/users", class=(path === '/admin/users' ? "active" : "")) Audit Users
+                ul.main-header-item-list
+                    li.main-header-item 
+                        if isAuthenticated
+                            a(href="/logout") Logout
+                        else
+                            a(href="/login", class=(path === '/login' ? "active" : "")) Login
+        block content
