@@ -1,6 +1,6 @@
 # IN Secure Bank
 
-This is a simple application made with academic purposes. It's (most likely) very insecure, very basic and very, very ugly.
+This is a simple application made with academic purposes. It's very insecure, very basic and very, very ugly.
 
 ## Roles
 
