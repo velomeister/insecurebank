@@ -22,3 +22,24 @@ Administrators can:
 - Manage overdraft requests (approve or deny).
 
 Neither Admins or Auditors have money nor the ability to request it.
+
+## How to deploy
+
+### Create database
+
+Execute the following command inside your `mysql` console:
+
+```bash
+source /path/to/repo/create_database.sql
+```
+
+It should setup the required database, already populated with some users.
+
+### Start app
+
+Using simple `npm`:
+
+```bash
+npm install
+npm start
+```
