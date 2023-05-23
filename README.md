@@ -29,13 +29,13 @@ Neither Admins or Auditors have money nor the ability to request it.
 
 ### Create database
 
-Execute the following command inside your `mysql` console:
+With the current status of the SQL script that is being used, you need to create a new `mysql` user for this step, said user has to be called `dbuser` and the password has to be `insecurebank`. As this user, execute the following command inside your `mysql` console:
 
 ```bash
 source /path/to/repo/create_database.sql
 ```
 
-It should setup the required database, already populated with some users.
+It should setup the required database, already populated with some users for the app.
 
 ### Start app
 
