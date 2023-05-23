@@ -1,0 +1,17 @@
+extends ../layouts/layout.pug
+
+block title 
+    title Create User
+
+block append styles 
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/product.css")
+
+block content
+    main
+        form.product-form(action="/admin/set-balance", method="post")
+            .form-control 
+                input#userId(type="hidden", name="userId", value=user.id)
+                label(for="balance") New Balance
+                input#balance(type="number", name="balance")
+            button.btn(type="submit") Set User Balance

@@ -41,3 +41,9 @@ INSERT INTO `users`(`fullName`, `email`, `password`, `role`, `balance`) VALUES (
 INSERT INTO `users`(`fullName`, `email`, `password`, `role`, `balance`) VALUES ('Sergio Valderrama', 'svalderrama@insecurebank.com', 'svalderrama', 'Auditor', 0);
 INSERT INTO `users`(`fullName`, `email`, `password`, `role`, `balance`) VALUES ('Nicolás Nontoa', 'nnontoa@insecurebank.com', 'nnontoa', 'User', 1500);
 INSERT INTO `users`(`fullName`, `email`, `password`, `role`, `balance`) VALUES ('Daniel Bermúdez', 'dbermudez@insecurebank.com', 'dbermudez', 'User', 1500);
+
+CREATE USER 'dbuser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'insecurebank';
+
+GRANT ALL PRIVILEGES ON *.* TO 'dbuser'@'localhost' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;

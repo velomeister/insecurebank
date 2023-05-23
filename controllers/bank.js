@@ -24,7 +24,7 @@ exports.makeTransfer = (req, res, next) => {
     const destinationEmail = req.body.destinationEmail;
     const amount = req.body.amount;
     if (req.session.user.balance < amount) {
-        return res.redirect('/400?err="Not enough money to make that transfer..."');
+        return res.redirect('/400?err=Not enough money to make that transfer...');
     }
     Transfer.save(originEmail, destinationEmail, amount);
     res.redirect('/make-transfer');
