@@ -17,6 +17,7 @@ jobs:
     steps:
       - aws-ecs/run-task:
           cluster: insecure-bank
+          subnet-ids: $SUBNET_ONE, $SUBNET_TWO
           task-definition: insecure-bank
 workflows:
   build_and_deploy:
