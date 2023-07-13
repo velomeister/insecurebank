@@ -1,28 +1,15 @@
 version: 2.1
 orbs:
-  node: circleci/node@5.1.0
+  aws-ecr: circleci/aws-ecr@8.2.1
   aws-ecs: circleci/aws-ecs@3.2.0
-jobs:
-  build:
-    executor: node/default
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: npm
-          cache-path: ~/project/node_modules
-          override-ci-command: npm install
-  run-task:
-    docker:
-      - image: node:latest
-    steps:
-      - aws-ecs/run-task:
-          cluster: insecure-bank
-          subnet-ids: $SUBNET_ONE, $SUBNET_TWO
-          task-definition: insecure-bank
 workflows:
-  build_and_deploy:
+  build-and-deploy:
     jobs:
-      - build
-      - run-task:
-          requires:
-            - build
+      - aws-ecr/build-and-push-image:
+          region: us-east-1
+          registry-id: 747261919254.dkr.ecr.us-east-1.amazonaws.com
+          repo: insecure-bank
+          tag: latest
+      - aws-ecs/deploy-service-update:
+          cluster: insecure-bank
+          container-image-name-updates: container=insecure-bank,tag=latestx
