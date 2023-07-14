@@ -6,10 +6,7 @@ workflows:
   build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
-          region: us-east-1
-          registry-id: AWS_ECR_REGISTRY_ID
           repo: insecure-bank
-          tag: latest
       - aws-ecs/deploy-service-update:
           cluster: insecure-bank
           container-image-name-updates: container=insecure-bank,tag=latestx
