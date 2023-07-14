@@ -9,7 +9,7 @@ workflows:
           repo: insecure-bank
       - aws-ecs/deploy-service-update:
           cluster: insecure-bank
-          container-image-name-updates: container=insecure-bank,tag=latestx
-          family: insecure-bank-service
+          container-image-name-updates: container=insecure-bank,tag=latest
+          family: insecure-bank
           requires:
             - aws-ecr/build-and-push-image
