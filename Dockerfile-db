@@ -1,0 +1,10 @@
+FROM mysql/mysql-server
+
+COPY ./create_database.sql /docker-entrypoint-initdb.d
+
+ENV MYSQL_USER=dbuser
+ENV MYSQL_PASSWORD=insecurebank
+ENV MYSQL_DATABASE=bank
+ENV MYSQL_ROOT_HOST=172.*.*.*
+
+EXPOSE 3306
