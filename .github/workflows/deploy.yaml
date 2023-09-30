@@ -18,9 +18,9 @@ jobs:
         region: us-east-1
     - name: Push Web to ECR
       run: |
-        docker tag my-image ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-repo/insecurebank-web:latest
+        docker tag insecurebank-web ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-repo/insecurebank-web:latest
         docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-repo/insecurebank-web:latest
     - name: Push DB to ECR
       run: |
-        docker tag my-image ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-repo/insecurebank-db:latest
+        docker tag insecurebank-db ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-repo/insecurebank-db:latest
         docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-repo/insecurebank-db:latest
