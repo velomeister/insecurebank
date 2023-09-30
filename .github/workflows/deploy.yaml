@@ -3,8 +3,12 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-    - run: docker build -t insecurebank-web -f Dockerfile-web .
-    - run: docker build -t insecurebank-db - Dockerfile-db .
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build Web Image
+      run: docker build -t insecurebank-web -f Dockerfile-web .
+    - name: Build DB Image
+      run: docker build -t insecurebank-db - Dockerfile-db .
     - name: Login to ECR
       id: ecr
       uses: jwalton/gh-ecr-login@v2.1.0
