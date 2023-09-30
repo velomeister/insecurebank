@@ -17,6 +17,10 @@ provider "aws" {
     region = "us-east-1"
 }
 
-resource "aws_ecr_repository" "insecurebank_ecr_repo" {
-    name = "insecurebank-repo"  
+resource "aws_ecr_repository" "insecurebank_ecr_web_repo" {
+    name = "insecurebank-web"  
+}
+
+resource "aws_ecr_repository" "insecurebank_ecr_db_repo" {
+    name = "insecurebank-db"  
 }
