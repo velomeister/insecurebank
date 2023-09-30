@@ -6,9 +6,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Build Web Image
-      run: docker build -t insecurebank-web -f Dockerfile-web .
-    - name: Build DB Image
-      run: docker build -t insecurebank-db -f Dockerfile-db .
+      run: docker build -t insecurebank .
     - name: Login to ECR
       id: ecr
       uses: jwalton/gh-ecr-login@v2.1.0
@@ -18,9 +16,5 @@ jobs:
         region: us-east-1
     - name: Push Web to ECR
       run: |
-        docker tag insecurebank-web ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-web:latest
-        docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-web:latest
-    - name: Push DB to ECR
-      run: |
-        docker tag insecurebank-db ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-db:latest
-        docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank-db:latest
+        docker tag insecurebank ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank:latest
+        docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank:latest
