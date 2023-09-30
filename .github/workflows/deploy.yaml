@@ -8,7 +8,7 @@ jobs:
     - name: Build Web Image
       run: docker build -t insecurebank-web -f Dockerfile-web .
     - name: Build DB Image
-      run: docker build -t insecurebank-db - Dockerfile-db .
+      run: docker build -t insecurebank-db -f Dockerfile-db .
     - name: Login to ECR
       id: ecr
       uses: jwalton/gh-ecr-login@v2.1.0
