@@ -32,6 +32,10 @@ variable "insecurebank_db_pass" {
   description = "Database password"
 }
 
+data "local_file" "db_init_script" {
+  filename = "${path.module}/create_database.sql"
+}
+
 resource "aws_ecr_repository" "insecurebank_ecr_repo" {
   name         = "insecurebank"
   force_delete = true
@@ -192,6 +196,15 @@ resource "aws_db_instance" "insecurebank_db" {
   identifier           = "insecurebank-db"
   skip_final_snapshot  = true
   publicly_accessible  = true
+}
+
+resource "null_resource" "db_setup" {
+
+  depends_on = [aws_db_instance.insecurebank_db]
+
+  provisioner "local-exec" {
+    command = "mysql -h ${aws_db_instance.insecurebank_db.address} --database ${var.insecurebank_db_name} -u ${var.insecurebank_db_user} -p ${var.insecurebank_db_pass} < ${data.local_file.db_init_script.content}"
+  }
 }
 
 output "app_url" {
