@@ -1,6 +1,6 @@
 on: [push]
 jobs:
-  push:
+  push-web-image:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -18,3 +18,8 @@ jobs:
       run: |
         docker tag insecurebank ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank:latest
         docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank:latest
+  restart-service:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restart ECS service
+        run: aws ecs update-service --force-new-deployment --service insecurebank-service --cluster insecurebank_cluster
