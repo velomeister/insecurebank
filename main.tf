@@ -191,6 +191,7 @@ resource "aws_db_instance" "insecurebank_db" {
   parameter_group_name = "default.mysql8.0"
   identifier           = "insecurebank-db"
   skip_final_snapshot  = true
+  publicly_accessible  = true
 }
 
 output "app_url" {
