@@ -19,6 +19,7 @@ jobs:
         docker tag insecurebank ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank:latest
         docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/insecurebank:latest
   restart-service:
+    needs: push-web-image
     runs-on: ubuntu-latest
     steps:
       - name: Restart ECS service
