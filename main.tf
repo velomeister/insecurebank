@@ -210,7 +210,3 @@ resource "null_resource" "db_setup" {
 output "app_url" {
   value = aws_alb.insecurebank_load_balancer.dns_name
 }
-
-output "db_url" {
-  value = aws_db_instance.insecurebank_db.address
-}
